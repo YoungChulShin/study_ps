@@ -42,6 +42,23 @@ class TwoSumTest {
   }
 
   @Test
+  void no_matched_result_return_null() {
+    // given
+    int[] nums = new int[4];
+    nums[0] = 2;
+    nums[1] = 7;
+    nums[2] = 11;
+    nums[3] = 15;
+    int target = 55;
+
+    // when
+    int[] result = instance.twoSum(nums, target);
+
+    // then
+    Assertions.assertThat(result).isNull();
+  }
+
+  @Test
   void valid_input_return_arrays_of_index() {
     // given
     int[] nums = new int[4];
@@ -50,6 +67,49 @@ class TwoSumTest {
     nums[2] = 11;
     nums[3] = 15;
     int target = 9;
+
+    // when
+    int[] result = instance.twoSum(nums, target);
+
+    // then
+    int[] expectedResult = new int[2];
+    expectedResult[0] = 0;
+    expectedResult[1] = 1;
+
+    Assertions.assertThat(result.length).isEqualTo(2);
+    Assertions.assertThat(result[0]).isEqualTo(expectedResult[0]);
+    Assertions.assertThat(result[1]).isEqualTo(expectedResult[1]);
+  }
+
+  @Test
+  void valid2_input_return_arrays_of_index() {
+    // given
+    int[] nums = new int[3];
+    nums[0] = 3;
+    nums[1] = 2;
+    nums[2] = 4;
+    int target = 6;
+
+    // when
+    int[] result = instance.twoSum(nums, target);
+
+    // then
+    int[] expectedResult = new int[2];
+    expectedResult[0] = 1;
+    expectedResult[1] = 2;
+
+    Assertions.assertThat(result.length).isEqualTo(2);
+    Assertions.assertThat(result[0]).isEqualTo(expectedResult[0]);
+    Assertions.assertThat(result[1]).isEqualTo(expectedResult[1]);
+  }
+
+  @Test
+  void valid3_input_return_arrays_of_index() {
+    // given
+    int[] nums = new int[2];
+    nums[0] = 3;
+    nums[1] = 3;
+    int target = 6;
 
     // when
     int[] result = instance.twoSum(nums, target);
