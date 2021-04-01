@@ -27,8 +27,8 @@ It is guaranteed that the list represents a number that does not have leading ze
  */
 public class AddTwoNumbers {
 
-  // 시간 복잡도 O(n)
-  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+  // 시간 복잡도 O(max(l1.length, l2.length))
+  public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
     if (l1 == null && l2 == null) {
       return null;
     }
@@ -62,6 +62,38 @@ public class AddTwoNumbers {
         return new ListNode(acc);
       }
     }
+  }
+
+  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode dummyHead = new ListNode(0);
+    ListNode p = l1;
+    ListNode q = l2;
+    ListNode current = dummyHead;
+
+    int carry = 0;
+
+    while (p != null || q != null) {
+      int x = (p == null) ? 0 : p.getValue();
+      int y = (q == null) ? 0 : q.getValue();
+      int sum = x + y + carry;
+      carry = sum / 10;
+      current.setNext(new ListNode(sum % 10));
+      current = current.getNext();
+
+      if (p != null) {
+        p = p.getNext();
+      }
+
+      if (q != null) {
+        q = q.getNext();
+      }
+    }
+
+    if (carry > 0) {
+      current.setNext(new ListNode(carry));
+    }
+
+    return dummyHead.getNext();
   }
 }
 
