@@ -27,22 +27,40 @@ It is guaranteed that the list represents a number that does not have leading ze
  */
 public class AddTwoNumbers {
 
+  // 시간 복잡도 O(n)
   public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
     if (l1 == null && l2 == null) {
       return null;
     }
 
-    ListNode result = new ListNode();
-
-    return result;
+    return add(l1, l2, 0);
   }
   
   public ListNode add(ListNode l1, ListNode l2, int acc) {
     if (l1 != null && l2 != null) {
       int sum = l1.getValue() + l2.getValue() + acc;
-      int remain = sum % 10;
+      int value = sum % 10;
       int mode = sum == 0 ? 0 : sum / 10;
+
+      return new ListNode(value, add(l1.getNext(), l2.getNext(), mode));
+    } else if (l1 != null && l2 == null) {
+      int sum = l1.getValue() + acc;
+      int value = sum % 10;
+      int mode = sum == 0 ? 0 : sum / 10;
+
+      return new ListNode(value, add(l1.getNext(), null, mode));
+    } else if (l1 == null && l2 != null) {
+      int sum = l2.getValue() + acc;
+      int value = sum % 10;
+      int mode = sum == 0 ? 0 : sum / 10;
+
+      return new ListNode(value, add(null, l2.getNext(), mode));
+    } else {
+      if (acc == 0) {
+        return null;
+      } else {
+        return new ListNode(acc);
+      }
     }
   }
 }

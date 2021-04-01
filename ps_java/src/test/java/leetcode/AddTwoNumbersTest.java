@@ -111,6 +111,6 @@ class AddTwoNumbersTest {
     Assertions.assertThat(listNode.getNext().getNext().getNext().getNext().getNext().getValue()).isEqualTo(0);
     Assertions.assertThat(listNode.getNext().getNext().getNext().getNext().getNext().getNext().getValue()).isEqualTo(0);
     Assertions.assertThat(listNode.getNext().getNext().getNext().getNext().getNext().getNext().getNext().getValue()).isEqualTo(1);
-    Assertions.assertThat(listNode.getNext().getNext().getNext().getNext().getNext().getNext().getNext().getNext().getValue()).isNull();
+    Assertions.assertThat(listNode.getNext().getNext().getNext().getNext().getNext().getNext().getNext().getNext()).isNull();
   }
 }
